@@ -1,0 +1,51 @@
+/*
+ * (C) Copyright 2015-2016 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * Contributors:
+ *   qiong.wang (夜色)
+ */
+
+package com.wq.wqchat.client.user;
+
+import com.wq.wqchat.api.spi.common.MQClientFactory;
+import com.wq.wqchat.api.spi.common.MQMessageReceiver;
+import com.wq.wqchat.tools.Utils;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import static com.wq.wqchat.api.event.Topics.OFFLINE_CHANNEL;
+import static com.wq.wqchat.api.event.Topics.ONLINE_CHANNEL;
+
+
+public class UserStatusChangeListener implements MQMessageReceiver {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserStatusChangeListener.class);
+
+    //只需要一台机器注册online、offline 消息通道
+    public UserStatusChangeListener() {
+        if ("127.0.0.1".equals(Utils.getLocalIp())) {
+            MQClientFactory.create().subscribe(ONLINE_CHANNEL, this);
+            MQClientFactory.create().subscribe(OFFLINE_CHANNEL, this);
+        } else {
+            LOGGER.error("UserChangeListener is not localhost,required:{}, but:{}", "127.0.0.1", Utils.getLocalIp());
+        }
+    }
+
+    @Override
+    public void receive(String channel, Object message) {
+
+    }
+}

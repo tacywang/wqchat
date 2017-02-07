@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>wqchat</artifactId>
+        <groupId>com.wq.wqchat</groupId>
+        <version>0.7.0</version>
+    </parent>
+
+    <artifactId>wqchat-client</artifactId>
+    <version>${wqchat.version}</version>
+    <packaging>jar</packaging>
+    <name>wqchat-client</name>
+    <description>wqchat消息推送系统服务端SDK</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>${wqchat.groupId}</groupId>
+            <artifactId>wqchat-netty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${wqchat.groupId}</groupId>
+            <artifactId>wqchat-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${wqchat.groupId}</groupId>
+            <artifactId>wqchat-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${wqchat.groupId}</groupId>
+            <artifactId>wqchat-zk</artifactId>
+        </dependency>
+    </dependencies>
+</project>
